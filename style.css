@@ -1,0 +1,65 @@
+body {
+  background-color: rgb(239,141,86);
+  color: #333333;
+  font-size: 1.3rem;
+  margin: 0;
+  padding-bottom: 5rem;
+  text-align: center;
+}
+.header{
+  background-color: rgba(255,255,255,0.7);
+  padding-top: 2rem;
+  padding-right: 0.5rem;
+  padding-bottom: 2rem;
+  padding-left: 0.5rem;
+}
+.header h1{  
+  margin-top: 0;
+}
+.karmas-container {
+  display: flex;
+  justify-content: center;
+}
+.karmas {
+  display: flex;
+  flex-wrap: wrap;
+  width: 80%;
+}
+.karma {
+  align-items: center;
+  background-color: white;
+  border-radius: 5px;
+  box-shadow: 0 2px 10px rgba(0,0,0,.2);
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  font-size: 1.5rem;
+  margin: 0.5rem;
+  opacity: 0.7;
+  padding: 1rem;
+}
+.karma:hover {
+  box-shadow: 0 2px 5px rgba(0,0,0,0.26)
+}
+.karma--active {
+  opacity: 1;
+}
+.karma__name {
+  cursor: pointer;
+}
+.karma__score {
+  cursor: pointer;
+  font-size: 2rem;
+  margin-left: 1rem;
+}
+.point {
+  display: flex;
+  justify-content: center;
+}
+
+.point__number {
+  font-size: 3rem;
+  font-weight: bold;
+  border-bottom: solid 10px #333333;
+}
