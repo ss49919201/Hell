@@ -10,9 +10,9 @@ var Point = /** @class */ (function () {
         enumerable: false,
         configurable: true
     });
-    Point.prototype.render = function () {
-        document.querySelector('.point__number').textContent = String(this.totalpoint);
-    };
+    // render(): void{
+    //     document.querySelector('.point__number')!.textContent = String(this.totalpoint);
+    // }
     Point.getInstance = function () {
         if (!Point.instance) {
             Point.instance = new Point();
@@ -70,6 +70,8 @@ var Karmas = /** @class */ (function () {
                 element.classList.remove('karma--active');
             }
         });
+        // const point = Point.getInstance();
+        // point.render();
     };
     return Karmas;
 }());
@@ -81,13 +83,11 @@ var Karma = /** @class */ (function () {
     Karma.prototype.clickEventHandler = function () {
         this.element.classList.toggle('karma--active');
         var point = Point.getInstance();
-        point.render();
+        // point.render();
     };
     return Karma;
 }());
 var Judge = /** @class */ (function () {
-    // _resultpoint: number;
-    // _resultPlace: string;
     function Judge() {
         this.element = document.querySelector('.judge');
         this.element.addEventListener('click', this.clickEventHandler.bind(this));
@@ -96,17 +96,41 @@ var Judge = /** @class */ (function () {
     Judge.prototype.clickEventHandler = function () {
         this.element.classList.toggle('judge--active');
         if (this.element.classList.contains('judge--active')) {
-            this.judge();
+            this.displayJudgement();
             this.element.textContent = "もう一度やり直す";
         }
         else {
             var karmas = Karmas.getInstance();
             karmas.remove();
             this.element.textContent = "判定する";
+            document.querySelector('.result').classList.remove('result--display');
         }
     };
     ;
-    Judge.prototype.judge = function () { };
+    Object.defineProperty(Judge.prototype, "resultPoint", {
+        get: function () {
+            var point = Point.getInstance();
+            return point.totalpoint;
+        },
+        enumerable: false,
+        configurable: true
+    });
+    Object.defineProperty(Judge.prototype, "resultPlace", {
+        get: function () {
+            var resultPoint = this.resultPoint;
+            if (resultPoint < 0) {
+                return "無間地獄";
+            }
+            return "地獄";
+        },
+        enumerable: false,
+        configurable: true
+    });
+    Judge.prototype.displayJudgement = function () {
+        document.querySelector('.result__point').textContent = String(this.resultPoint);
+        document.querySelector('.result__place').textContent = this.resultPlace;
+        document.querySelector('.result').classList.add('result--display');
+    };
     ;
     Judge.getInstance = function () {
         if (!Judge.instance) {

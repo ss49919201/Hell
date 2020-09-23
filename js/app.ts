@@ -1,6 +1,5 @@
 interface Pointable {
     readonly totalpoint: number;
-    render(): void;
 }
 interface Karmaable {
     element: HTMLDivElement;
@@ -14,10 +13,10 @@ interface Karmasable {
 }
 interface Judgeable {
     element: HTMLDivElement;
-    // readonly resultpoint: number;
-    // readonly resultPlace: string;
+    readonly resultPoint: number;
+    readonly resultPlace: string;
     clickEventHandler(): void;
-    judge(): void;
+    displayJudgement(): void;
 }
 
 class Point implements Pointable{    
@@ -26,9 +25,6 @@ class Point implements Pointable{
     get totalpoint(): number {        
         const karmas = Karmas.getInstance();
         return karmas.activeElementspoint.reduce((total,point) => total + point,0)
-    }
-    render(): void{
-        document.querySelector('.point__number')!.textContent = String(this.totalpoint);
     }
     static getInstance() {
         if (!Point.instance) {
@@ -85,30 +81,43 @@ class Karma implements Karmaable{
     }
     clickEventHandler(): void{
         this.element.classList.toggle('karma--active');
-        const point = Point.getInstance();
-        point.render();
+        const point = Point.getInstance();        
     }
 }
 class Judge implements Judgeable{    
     private static instance: Judge;
     element: HTMLDivElement = document.querySelector<HTMLDivElement>('.judge')!;
-    // _resultpoint: number;
-    // _resultPlace: string;
     private constructor() {
         this.element.addEventListener('click', this.clickEventHandler.bind(this))
      };
     clickEventHandler(): void{
         this.element.classList.toggle('judge--active');
         if (this.element.classList.contains('judge--active')) {
-            this.judge();
+            this.displayJudgement();
             this.element.textContent = "もう一度やり直す";
         } else {
             const karmas = Karmas.getInstance();
             karmas.remove();
             this.element.textContent = "判定する";
+            document.querySelector('.result')!.classList.remove('result--display');
         }
     };
-    judge(): void{ };
+    get resultPoint() {
+        const point = Point.getInstance();
+        return point.totalpoint;
+    }
+    get resultPlace(): string {
+        const resultPoint = this.resultPoint;
+        if (resultPoint < 0) {
+            return "無間地獄";
+        }
+        return "地獄";
+    }
+    displayJudgement(): void{
+        document.querySelector('.result__point')!.textContent = String(this.resultPoint);
+        document.querySelector('.result__place')!.textContent = this.resultPlace;
+        document.querySelector('.result')!.classList.add('result--display');
+     };
     static getInstance() {
         if (!Judge.instance) {
             Judge.instance = new Judge();
