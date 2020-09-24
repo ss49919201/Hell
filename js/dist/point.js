@@ -1,5 +1,5 @@
-"use strict";
-class Point {
+import { Karmas } from "./karmas.js";
+export class Point {
     constructor() { }
     get totalpoint() {
         const karmas = Karmas.getInstance();

@@ -1,17 +1,17 @@
-interface Pointable {
+export interface Pointable {
     readonly totalpoint: number;
 }
-interface Karmaable {
+export interface Karmaable {
     element: HTMLDivElement;
     clickEventHandler(): void;
 }
-interface Karmasable {
+export interface Karmasable {
     elements: NodeListOf<HTMLDivElement>;
     readonly activeElements: HTMLDivElement[];
     readonly activeElementspoint: number[];
     remove(): void;
 }
-interface Judgeable {
+export interface Judgeable {
     element: HTMLDivElement;
     readonly resultPoint: number;
     readonly resultPlace: string;

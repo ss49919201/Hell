@@ -1,4 +1,8 @@
-class Judge implements Judgeable {
+import { Judgeable } from "./interface.js";
+import { Point } from "./point.js";
+import { Karmas } from "./karmas.js";
+
+export class Judge implements Judgeable {
     private static instance: Judge;
     element: HTMLDivElement = document.querySelector<HTMLDivElement>('.judge')!;
     private constructor() {

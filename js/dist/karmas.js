@@ -1,5 +1,5 @@
-"use strict";
-class Karmas {
+import { Karma } from "./karma.js";
+export class Karmas {
     constructor() {
         this.elements = document.querySelectorAll('.karma');
         this._activeElementspoint = [];

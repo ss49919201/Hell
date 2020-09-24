@@ -1,4 +1,7 @@
-class Karmas implements Karmasable {
+import { Karmasable } from "./interface.js";
+import { Karma } from "./karma.js";
+
+export class Karmas implements Karmasable {
     private static instance: Karmas;
     elements = document.querySelectorAll<HTMLDivElement>('.karma');
     private _activeElementspoint: number[] = [];

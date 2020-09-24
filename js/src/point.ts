@@ -1,4 +1,7 @@
-class Point implements Pointable {
+import { Pointable } from "./interface.js";
+import { Karmas } from "./karmas.js";
+
+export class Point implements Pointable {
     private static instance: Point;
     private constructor() { }
     get totalpoint(): number {

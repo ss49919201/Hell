@@ -1,5 +1,5 @@
-"use strict";
-class Karma {
+import { Point } from "./point.js";
+export class Karma {
     constructor(element) {
         this.element = element;
         element.addEventListener('click', this.clickEventHandler.bind(this));

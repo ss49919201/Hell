@@ -1,5 +1,6 @@
-"use strict";
-class Judge {
+import { Point } from "./point.js";
+import { Karmas } from "./karmas.js";
+export class Judge {
     constructor() {
         this.element = document.querySelector('.judge');
         this.element.addEventListener('click', this.clickEventHandler.bind(this));
