@@ -9,3 +9,4 @@ export class Karma {
         const point = Point.getInstance();
     }
 }
+console.log('karmas');
