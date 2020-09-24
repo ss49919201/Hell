@@ -1,0 +1,2 @@
+Karmas.getInstance();
+Judge.getInstance();
