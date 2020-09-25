@@ -25,11 +25,17 @@ export class Judge implements Judgeable {
         return point.totalpoint;
     }
     get resultPlace(): string {
-        const resultPoint = this.resultPoint;
-        if (resultPoint < 0) {
-            return "無間地獄";
+        const resultPoint = this.resultPoint;        
+        if (resultPoint < -15) {
+            return "阿鼻地獄";
         }
-        return "地獄";
+        if (resultPoint < -10) {
+            return "叫喚地獄";
+        }
+        if (resultPoint === -10) {
+            return "等活地獄";
+        }
+        return "地獄以外";
     }
     displayJudgement(): void {
         document.querySelector('.result__point')!.textContent = String(this.resultPoint);
